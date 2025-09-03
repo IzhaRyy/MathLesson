@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Lesson Of Math Knowledge</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+    * { box-sizing: border-box; margin:0; padding:0; }
+    body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); color: #fff; }
+
+    /* Opening */
+    #opening {
+        height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center;
+        text-align:center; background:linear-gradient(135deg, #6a11cb, #2575fc);
+    }
+    #opening h1 { font-size:2.8rem; margin-bottom:20px; font-weight:800; color:white; text-shadow:2px 2px 6px rgba(0,0,0,0.4); }
+    #opening p { font-size:1.6rem; margin-bottom:25px; color:white; }
+
+    #cursor, #cursor2 {
+      display:inline-block;
+      width:10px;
+      animation: blink 0.7s step-end infinite;
+    }
+    @keyframes blink { 50% { opacity:0 } }
+
+    #opening button {
+        background:white; color:#333; border:none; padding:12px 28px; margin:10px;
+        font-size:1.2em; border-radius:10px; cursor:pointer; font-weight:600;
+        transition:all 0.3s ease; box-shadow:0px 4px 8px rgba(0,0,0,0.2);
+        opacity:0; transform:translateY(20px);
+    }
+    #opening button.show { opacity:1; transform:translateY(0); transition: all 0.5s ease; }
+    #opening button:hover { background:#ff4081; color:white; transform:scale(1.08); }
+
+    #goodbye { display:none; font-size:2em; font-weight:700; margin-top:20px; }
+
+    /* Welcome transition */
+    #welcome {
+        display:none; height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center;
+        text-align:center; background:linear-gradient(135deg, #6a11cb, #2575fc);
+        font-size:2.5rem; font-weight:800; color:white;
+        animation: fadeIn 1s;
+    }
+
+    /* Materi */
+    #materi { display:none; animation: fadeIn 1s ease; }
+
+    header { text-align:center; padding:40px 20px; background: linear-gradient(90deg,#6a11cb,#2575fc); box-shadow:0 4px 10px rgba(0,0,0,0.3);}
+    header h1 { font-size:2.5rem; }
+    header p { font-size:1.1rem; margin-top:10px; color:#e0e0e0; }
+
+    nav { display:flex; justify-content:center; margin-top:20px; flex-wrap:wrap; }
+    nav button { background:#2575fc; border:none; color:white; padding:12px 25px; margin:5px; font-weight:600; border-radius:15px; cursor:pointer; transition:0.3s; box-shadow:0 4px 8px rgba(0,0,0,0.2);}
+    nav button:hover { background:#6a11cb; }
+
+    .container { max-width:1200px; margin:40px auto; padding:0 20px; }
+    .card { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); padding:20px; border-radius:20px; margin-bottom:30px; box-shadow:0 8px 20px rgba(0,0,0,0.3); transition:0.3s; }
+    .card:hover { transform: translateY(-5px); box-shadow:0 12px 25px rgba(0,0,0,0.5); }
+    .card h3 { color:#ffeb3b; margin-bottom:15px; }
+    .card ul { list-style: disc; margin-left:20px; margin-bottom:10px; }
+    .card p { margin-bottom:10px; line-height:1.6; }
+
+    .latihan-btn { background:#ff5722; border:none; padding:10px 20px; color:white; border-radius:12px; cursor:pointer; transition:0.3s; font-weight:600; }
+    .latihan-btn:hover { background:#ff9800; }
+
+    footer { text-align:center; padding:20px; background:#1a1a2e; margin-top:40px; color:#bbb; }
+
+    .tab-content { display:none; }
+    .active-tab { display:block; animation:fadeIn 0.8s; }
+
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+    @keyframes scaleIn { from{opacity:0; transform:scale(0.9);} to{opacity:1; transform:scale(1);} }
+</style>
+</head>
+<body>
+
+<!-- Opening -->
+<div id="opening">
+  <h1><span id="title"></span><span id="cursor"></span></h1>
+  <p><span id="subtitle"></span><span id="cursor2"></span></p>
+  <button id="btnYes" onclick="goToLesson()">Yes</button>
+  <button id="btnNo" onclick="goodBye()">No</button>
+  <div id="goodbye">Good Bye 👋</div>
+</div>
+
+<!-- Welcome transition -->
+<div id="welcome">
+  <h1>Welcome To This Knowledge</h1>
+</div>
+
+<!-- Materi -->
+<div id="materi">
+<header>
+    <h1>The Lesson Of Math Knowledge</h1>
+    <p>Materi Lengkap, Contoh Soal, dan Latihan Interaktif</p>
+</header>
+
+<nav>
+    <button onclick="openTab('kelas10')">Kelas 10</button>
+    <button onclick="openTab('kelas11')">Kelas 11</button>
+    <button onclick="openTab('kelas12')">Kelas 12</button>
+</nav>
+
+<div class="container">
+
+<!-- Kelas 10 -->
+<div id="kelas10" class="tab-content">
+    <div class="card">
+        <h3>Eksponen & Logaritma</h3>
+        <p><strong>Pengertian:</strong> Eksponen adalah perpangkatan, logaritma invers dari perpangkatan.</p>
+        <p><strong>Rumus:</strong></p>
+        <ul>
+            <li>a^m × a^n = a^(m+n)</li>
+            <li>(a^m)^n = a^(m×n)</li>
+            <li>log_a(xy) = log_a x + log_a y</li>
+        </ul>
+        <p><strong>Contoh Soal:</strong> Jika 2^x = 8, maka x = 3</p>
+        <button class="latihan-btn" onclick="alert('Latihan: 3^x = 27, tentukan x!')">Coba Latihan</button>
+    </div>
+
+    <div class="card">
+        <h3>Barisan & Deret</h3>
+        <p><strong>Pengertian:</strong> Barisan adalah urutan bilangan. Deret adalah penjumlahan suku barisan.</p>
+        <p><strong>Rumus:</strong></p>
+        <ul>
+            <li>U_n = a + (n-1)d</li>
+            <li>S_n = n/2 × (a+U_n)</li>
+        </ul>
+        <p><strong>Contoh Soal:</strong> Barisan 2,5,8,... Tentukan U10 = 29</p>
+        <button class="latihan-btn" onclick="alert('Latihan: Tentukan U15 dari barisan 3,7,11,...')">Coba Latihan</button>
+    </div>
+</div>
+
+<!-- Kelas 11 -->
+<div id="kelas11" class="tab-content">
+    <div class="card">
+        <h3>Matriks & Determinan</h3>
+        <p><strong>Pengertian:</strong> Matriks: susunan bilangan berbentuk persegi panjang. Determinan: nilai khusus matriks persegi.</p>
+        <p><strong>Rumus:</strong></p>
+        <ul>
+            <li>Jumlah matriks: (A+B)_{ij} = A_{ij}+B_{ij}</li>
+            <li>Determinant 2x2: det([[a,b],[c,d]]) = ad-bc</li>
+        </ul>
+        <p><strong>Contoh Soal:</strong> det([[2,3],[1,4]]) = 5</p>
+        <button class="latihan-btn" onclick="alert('Latihan: Hitung det([[1,2],[3,4]])')">Coba Latihan</button>
+    </div>
+
+    <div class="card">
+        <h3>Limit & Turunan</h3>
+        <p><strong>Pengertian:</strong> Limit: nilai pendekatan fungsi saat x mendekati titik tertentu. Turunan: laju perubahan fungsi.</p>
+        <p><strong>Rumus:</strong></p>
+        <ul>
+            <li>f'(x) = lim(h→0) [f(x+h)-f(x)]/h</li>
+            <li>(x^n)' = n*x^(n-1)</li>
+        </ul>
+        <p><strong>Contoh Soal:</strong> f(x)=x^2 → f'(x)=2x</p>
+        <button class="latihan-btn" onclick="alert('Latihan: Turunan f(x)=x^3')">Coba Latihan</button>
+    </div>
+</div>
+
+<!-- Kelas 12 -->
+<div id="kelas12" class="tab-content">
+    <div class="card">
+        <h3>Persamaan Diferensial</h3>
+        <p><strong>Pengertian:</strong> Persamaan diferensial: persamaan yang mengandung turunan fungsi.</p>
+        <p><strong>Rumus:</strong> dy/dx = f(x,y)</p>
+        <p><strong>Contoh Soal:</strong> dy/dx = y → Solusi y = Ce^x</p>
+        <button class="latihan-btn" onclick="alert('Latihan: dy/dx = 2y, tentukan y')">Coba Latihan</button>
+    </div>
+
+    <div class="card">
+        <h3>Geometri Ruang</h3>
+        <p><strong>Pengertian:</strong> Bangun 3D, jarak titik ke garis/plane.</p>
+        <p><strong>Rumus:</strong></p>
+        <ul>
+            <li>Volume kubus = s^3</li>
+            <li>Volume balok = p×l×t</li>
+            <li>Volume limas = 1/3 × luas alas × tinggi</li>
+        </ul>
+        <p><strong>Contoh Soal:</strong> Balok 2×3×4 → V=24</p>
+        <button class="latihan-btn" onclick="alert('Latihan: Volume limas alas 9 tinggi 6')">Coba Latihan</button>
+    </div>
+</div>
+
+</div>
+
+<footer>
+    <p>&copy; 2025 The Lesson Of Math Knowledge. All rights reserved.</p>
+</footer>
+</div>
+
+<script>
+/* Opening typing */
+document.addEventListener("DOMContentLoaded", () => {
+  const titleText = "The Lesson Of Math Knowledge";
+  const subtitleText = "Are you ready?";
+  let i=0, j=0;
+
+  function typeWriter(){
+    if(i < titleText.length){
+      document.getElementById("title").innerHTML += titleText.charAt(i);
+      i++;
+      setTimeout(typeWriter, 100);
+    } else {
+      document.getElementById("cursor").style.display = "none";
+      setTimeout(typeSubtitle, 500);
+    }
+  }
+
+  function typeSubtitle(){
+    if(j < subtitleText.length){
+      document.getElementById("subtitle").innerHTML += subtitleText.charAt(j);
+      j++;
+      setTimeout(typeSubtitle, 80);
+    } else {
+      document.getElementById("cursor2").style.display = "none";
+      setTimeout(()=>{
+        document.getElementById("btnYes").classList.add("show");
+        document.getElementById("btnNo").classList.add("show");
+      }, 400);
+    }
+  }
+
+  typeWriter();
+});
+
+function goToLesson() {
+  document.getElementById("opening").style.display = "none";
+  document.getElementById("welcome").style.display = "flex";
+  document.getElementById("welcome").style.animation = "scaleIn 1s";
+
+  setTimeout(() => {
+    document.getElementById("welcome").style.display = "none";
+    document.getElementById("materi").style.display = "block";
+    openTab('kelas10');
+  }, 2000);
+}
+function goodBye() {
+  document.querySelector("#opening h1").style.display = "none";
+  document.querySelector("#opening p").style.display = "none";
+  document.querySelector("#opening button:nth-of-type(1)").style.display = "none";
+  document.querySelector("#opening button:nth-of-type(2)").style.display = "none";
+  document.getElementById("goodbye").style.display = "block";
+  setTimeout(() => { window.close(); }, 1500);
+}
+function openTab(tabName) {
+    var i, tabs = document.getElementsByClassName('tab-content');
+    for(i=0;i<tabs.length;i++){ tabs[i].classList.remove('active-tab'); }
+    document.getElementById(tabName).classList.add('active-tab');
+}
+</script>
+
+</body>
+</html>
